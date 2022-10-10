@@ -1,22 +1,20 @@
 import "./App.css";
 import Header from "./components/atoms/header";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import routes from "./config";
+import { About, Contact, Home } from "./pages";
+import Login from "./components/atoms/login";
+import Body from "./components/atoms/body";
 
 function App() {
   return (
     <BrowserRouter>
       <Header />
+      {/* <Body /> */}
       <Routes>
-        {routes.map((route) => {
-          return (
-            <Route
-              path={route.path}
-              component={route.component}
-              key={route.key}
-            />
-          );
-        })}
+        <Route path="/Home" element={<Home />}></Route>
+        <Route path="/About" element={<About />}></Route>
+        <Route path="/Contact" element={<Contact />}></Route>
+        <Route path="/Login" element={<Login />}></Route>
       </Routes>
     </BrowserRouter>
   );
