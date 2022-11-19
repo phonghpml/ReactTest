@@ -1,9 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-class Header extends React.Component  {
-  listHeader = ["Home", "About", "Contact"];
-  render(){
+export class Header extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLogin: false,
+    };
+  }
+  componentDidMount() {
+    let isLogin = localStorage.getItem("jwt_token");
+    if (isLogin) {
+      this.setState({
+        isLogin: true,
+      });
+    }
+  }
+  render() {
+    const listHeader = ["Home", "About", "Contact"];
     return (
       <div className="bg-yellow-600 py-4">
         <div className="container mx-auto">
@@ -20,18 +34,43 @@ class Header extends React.Component  {
               })}
             </div>
             <div className="flex">
-              <Link to={`/Login`}  className="px-4 text-white capitalize">
-                Login
-              </Link>
-              <Link to={`/Logout`} className="px-4 text-white capitalize">
-                Logout
-              </Link>
+              {this.state.isLogin ? (
+                <Logout setState={this.setState} />
+              ) : (
+                <Login />
+              )}
             </div>
           </div>
         </div>
       </div>
     );
   }
-};
+}
 
-export default Header;
+class Login extends React.Component {
+  render() {
+    return (
+      <Link to={`/login`} className="px-4 text-white capitalize">
+        Login
+      </Link>
+    );
+  }
+}
+class Logout extends React.Component {
+  render() {
+    return (
+      <Link
+        to={`/login`}
+        className="px-4 text-white capitalize"
+        onClick={(e) => {
+          localStorage.clear();
+          this.props.setState({
+            isLogin: false,
+          });
+        }}
+      >
+        Logout
+      </Link>
+    );
+  }
+}

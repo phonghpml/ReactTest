@@ -1,17 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
-export class Login extends React.Component {
+export class SignUp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       username: "",
       password: "",
+      phoneNumber: "",
     };
   }
 
   async handleSubmit(e, state) {
     e.preventDefault();
-    const response = await fetch("http://localhost:2000/auth/login", {
+    const response = await fetch("http://localhost:2000/register", {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       mode: "cors", // no-cors, *cors, same-origin
       headers: {
@@ -34,6 +34,7 @@ export class Login extends React.Component {
       <>
         <div className="container mx-auto mt-10">
           <div className="mx-auto w-1/3">
+            <div className="text-center">Sign Up</div>
             <form>
               <div className="">
                 <label className="m-4">username</label>
@@ -59,6 +60,18 @@ export class Login extends React.Component {
                   }}
                 ></input>
               </div>
+              <div className="">
+                <label className="m-4">phone number</label>
+                <input
+                  className="border m-4 w-full"
+                  value={this.state.phoneNumber}
+                  onChange={(e) => {
+                    this.setState({
+                      phoneNumber: e.target.value,
+                    });
+                  }}
+                ></input>
+              </div>
               <div className="mx-auto w-1/3 text-center">
                 <button
                   onClick={(e) => {
@@ -66,15 +79,11 @@ export class Login extends React.Component {
                     this.setState({
                       username: "",
                       password: "",
+                      phoneNumber: "",
                     });
                   }}
                 >
                   Submit
-                </button>
-                <button className="mx-2">
-                  <Link to={`/signup`} className="px-4 capitalize">
-                    Sign up
-                  </Link>
                 </button>
               </div>
             </form>

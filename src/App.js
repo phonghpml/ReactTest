@@ -1,9 +1,9 @@
 import "./App.css";
-import Header from "./components/atoms/header";
+import { Header } from "./components/atoms/header";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { About, Contact, Home } from "./pages";
-import Login from "./components/atoms/login";
-import Body from "./components/atoms/body";
+import { Login } from "./components/atoms/login";
+import { SignUp } from "./components/atoms/signup";
 
 function App() {
   return (
@@ -15,6 +15,7 @@ function App() {
         <Route path="/About" element={<About />}></Route>
         <Route path="/Contact" element={<Contact />}></Route>
         <Route path="/Login" element={<Login />}></Route>
+        <Route path="/signup" element={<SignUp />}></Route>
       </Routes>
     </BrowserRouter>
   );
