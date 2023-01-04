@@ -1,3 +1,3 @@
-export { Home } from "./home";
-export { default as About } from "./about";
-export { default as Contact } from "./contact";
+export { Home } from "./home/index.tsx";
+export { default as About } from "./about/index.tsx";
+export { default as Contact } from "./contact/index.tsx";

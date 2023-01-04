@@ -1,5 +1,8 @@
 import React from "react";
-export class SignUp extends React.Component {
+export class SignUp extends React.Component<
+  {},
+  { username; password; phoneNumber }
+> {
   constructor(props) {
     super(props);
     this.state = {

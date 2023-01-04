@@ -1,6 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-export class Login extends React.Component {
+export class Login extends React.Component<
+  {},
+  { username: string; password: string }
+> {
   constructor(props) {
     super(props);
     this.state = {

@@ -1,9 +1,9 @@
 import "./App.css";
-import { Header } from "./components/atoms/header";
+import { Header } from "./components/atoms/header/index.tsx";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { About, Contact, Home } from "./pages";
-import { Login } from "./components/atoms/login";
-import { SignUp } from "./components/atoms/signup";
+import { About, Contact, Home } from "./pages/index.js";
+import { Login } from "./components/atoms/login/index.tsx";
+import { SignUp } from "./components/atoms/signup/index.tsx";
 
 function App() {
   return (

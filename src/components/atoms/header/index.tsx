@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export class Header extends React.Component {
+export class Header extends React.Component<{}, { isLogin: boolean }> {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,7 +19,7 @@ export class Header extends React.Component {
   render() {
     const listHeader = ["Home", "About", "Contact"];
     return (
-      <div className="bg-yellow-600 py-4">
+      <div className="bg-slate-500 py-4">
         <div className="container mx-auto">
           <div className="flex justify-between">
             <div className="flex">
@@ -56,7 +56,7 @@ class Login extends React.Component {
     );
   }
 }
-class Logout extends React.Component {
+class Logout extends React.Component<{ setState: any }> {
   render() {
     return (
       <Link
