@@ -4,7 +4,7 @@ export class Login extends React.Component<
   {},
   { username: string; password: string }
 > {
-  constructor(props) {
+  constructor(props: any) {
     super(props);
     this.state = {
       username: "",
@@ -12,7 +12,7 @@ export class Login extends React.Component<
     };
   }
 
-  async handleSubmit(e, state) {
+  async handleSubmit(e: any, state: any) {
     e.preventDefault();
     const response = await fetch("http://localhost:2000/auth/login", {
       method: "POST", // *GET, POST, PUT, DELETE, etc.

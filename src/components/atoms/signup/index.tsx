@@ -1,9 +1,9 @@
 import React from "react";
 export class SignUp extends React.Component<
   {},
-  { username; password; phoneNumber }
+  { username: any; password: any; phoneNumber: any }
 > {
-  constructor(props) {
+  constructor(props: any) {
     super(props);
     this.state = {
       username: "",
@@ -12,7 +12,7 @@ export class SignUp extends React.Component<
     };
   }
 
-  async handleSubmit(e, state) {
+  async handleSubmit(e: any, state: any) {
     e.preventDefault();
     const response = await fetch("http://localhost:2000/register", {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
