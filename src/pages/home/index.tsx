@@ -30,7 +30,7 @@ export class Home extends React.Component<
     fetch(
       "http://localhost:2000/stories?" +
         new URLSearchParams({
-          pageNumber: "0",
+          pageNumber: (this.state.currentPage - 1)+'',
           limit: "1",
         }).toString(),
       {
@@ -52,7 +52,9 @@ export class Home extends React.Component<
       .then((data) => {
         console.log(data);
         this.setState({
-          stories: data.data,
+          stories: data.data
+        });
+        this.setState({
           totalItem: data.totalStory,
         });
       })
@@ -81,13 +83,14 @@ export class Home extends React.Component<
       this.setState({
         currentPage: this.state.currentPage + 1,
       });
+      console.log('this.state.currentPage',this.state.currentPage)
+      this.getStories()
     }
   }
 
   render() {
     return (
       <div className="container mx-auto my-4 p-4">
-        {this.state.errorMessage && <div>{this.state.errorMessage}</div>}
         <div>
           <div className="bg-slate-500 p-4">Danh sách truyện</div>
           {this.state.stories.map((e: any) => {
@@ -103,11 +106,12 @@ export class Home extends React.Component<
             );
           })}
         </div>
+        {this.state.errorMessage && <div>{this.state.errorMessage}</div>}
         <Paginate
           totalItem={this.state.totalItem}
           itemPerPage={this.state.itemPerPage}
-          nextPage={this.nextPage}
-          prePage={this.prePage}
+          nextPage={() => this.nextPage()}
+          prePage={() => this.prePage()}
         ></Paginate>
       </div>
     );
