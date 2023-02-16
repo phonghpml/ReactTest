@@ -1,19 +1,14 @@
 import React from "react";
-import { Home } from "../../../pages";
-export const Paginate = ({
-  totalItem,
-  itemPerPage,
-  paginate,
-  prePage,
-  nextPage,
-}: any) => {
-  const pageNumbers: any = [];
-  console.log("totalItem", totalItem);
-  for (let i = 1; i <= Math.ceil(totalItem / itemPerPage); i++) {
-    pageNumbers.push(i);
+export class Paginate extends React.Component<{totalItem: any,itemPerPage: any, nextPage: any, prePage: any}>{
+  constructor(props: any){
+    super(props)
   }
 
-  return (
+  return() {
+    {let pageNumbers: any = [];
+      for (let i = 1; i <= Math.ceil(this.props.totalItem / this.props.itemPerPage); i++) {
+        pageNumbers.push(i);
+      }}
     <div>
       {<div className="">
       <ul className="flex float-right">
@@ -25,7 +20,7 @@ export const Paginate = ({
         >
           Prev
         </li>
-        {pageNumbers.map((number: any) => (
+        {/* {pageNumbers.map((number: any) => (
           <li
             key={number}
             onClick={() => {
@@ -35,13 +30,13 @@ export const Paginate = ({
           >
             {number}
           </li>
-        ))}
-        <li onClick={() => nextPage()} className="block border bg-slate-300 p-2 cursor-pointer">
+        ))} */}
+        <li onClick={this.props.nextPage} className="block border bg-slate-300 p-2 cursor-pointer">
           Next
         </li>
       </ul>
     </div>}
     </div>
     
-  );
+          };
 };

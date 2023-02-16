@@ -17,7 +17,7 @@ export class Header extends React.Component<{}, { isLogin: boolean }> {
     }
   }
   render() {
-    const listHeader = ["Home", "About", "Contact"];
+    const listHeader = ["Home", "About", "Contact", "Game"];
     return (
       <div className="bg-slate-500 py-4">
         <div className="container mx-auto">

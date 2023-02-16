@@ -21,16 +21,17 @@ export class Home extends React.Component<
       itemPerPage: 1,
       prePage: 0,
       nextPage: 0,
-      currentPage: 1,
+      currentPage: 0,
     };
   }
 
   getStories() {
+    console.log('this.state.currentPage', this.state.currentPage)
     const token = localStorage.getItem("jwt_token");
     fetch(
       "http://localhost:2000/stories?" +
         new URLSearchParams({
-          pageNumber: (this.state.currentPage - 1)+'',
+          pageNumber: (this.state.currentPage)+'',
           limit: "1",
         }).toString(),
       {
@@ -75,25 +76,24 @@ export class Home extends React.Component<
     }
   }
   nextPage() {
-    console.log("this", this);
     if (
       this.state.currentPage !==
       Math.ceil(this.state.totalItem / this.state.itemPerPage)
     ) {
+      console.log('a')
       this.setState({
         currentPage: this.state.currentPage + 1,
-      });
-      console.log('this.state.currentPage',this.state.currentPage)
-      this.getStories()
+      })
     }
   }
 
   render() {
+    const {currentPage, errorMessage, itemPerPage,stories, totalItem} = this.state
     return (
       <div className="container mx-auto my-4 p-4">
         <div>
           <div className="bg-slate-500 p-4">Danh sách truyện</div>
-          {this.state.stories.map((e: any) => {
+          {stories.map((e: any) => {
             return (
               <div key={e._id} className="p-4 border">
                 <div>
@@ -106,10 +106,10 @@ export class Home extends React.Component<
             );
           })}
         </div>
-        {this.state.errorMessage && <div>{this.state.errorMessage}</div>}
+        {errorMessage && <div>{errorMessage}</div>}
         <Paginate
-          totalItem={this.state.totalItem}
-          itemPerPage={this.state.itemPerPage}
+          totalItem={totalItem}
+          itemPerPage={itemPerPage}
           nextPage={() => this.nextPage()}
           prePage={() => this.prePage()}
         ></Paginate>
