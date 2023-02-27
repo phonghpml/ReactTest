@@ -8,11 +8,13 @@ export const Square = ({
   onSquareClick: any;
 }) => {
   return (
-    <button
-      className="font-bold w-10 h-10 text-center leading-10 p-0"
-      onClick={onSquareClick}
-    >
-      {value}
-    </button>
+    <div>
+      <button
+        className="font-bold min-w-10 text-center leading-10 p-0 border min-h-10"
+        onClick={onSquareClick}
+      >
+        {value}
+      </button>
+    </div>
   );
 };
